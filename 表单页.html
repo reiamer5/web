@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>表单页</title> 
+<style>
+  fieldset { width:300px; }
+  input:focus
+  {
+    background-color:rgb(245, 245, 171);
+  }
+</style>
+</head>
+<body>
+
+<form name="input" action="html_form_action.php" method="get">
+  管理员账户: <input type="text" name="user"><br>
+  管理员密码: <input type="password" name="password"><br>
+  <input type="button" value="Login">
+</form>
+<p></p>
+
+<form>
+  <input type="radio" name="operation" value="modify">修改内容<br>
+  <input type="radio" name="operation" value="insert">插入新内容<br>
+  <input type="button" value="确认">
+</form>
+<p></p>
+
+<form>
+  专辑名称：
+  <select name="albumname">
+    <option value="1">《Taylor Swift》</option>
+    <option value="2">《Fearless》</option>
+    <option value="3">《Speak Now》</option>
+    <option value="4">《RED》</option>
+    <option value="5">《1989》</option>
+    <option value="6">《reputation》</option>
+    <option value="7">《Lover》</option>
+    <option value="8">《folklore》</option>
+    <option value="9">《evermore》</option>
+    <option value="10">《Fearless（Taylor's version）》</option>
+    <option value="11">《RED（Taylor's version）》</option>
+  </select>
+  <br>
+  发行时间：
+  <select name="year">
+    <option value="2000">2000</option>
+    <option value="2001">2001</option>
+    <option value="2002">2002</option>
+    <option value="2003">2003</option>
+    <option value="2004">2004</option>
+    <option value="2005">2005</option>
+    <option value="2006">2006</option>
+    <option value="2007">2007</option>
+    <option value="2008">2008</option>
+    <option value="2009">2009</option>
+    <option value="2010">2010</option>
+    <option value="2011">2011</option>
+    <option value="2012">2012</option>
+    <option value="2013">2013</option>
+    <option value="2014">2014</option>
+    <option value="2015">2015</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+    <option value="2019">2019</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+  </select>
+  年 
+  <select name="month">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+  </select>
+  月 
+</form>
+<form>
+  专辑销量：
+  <input type="text" name="sale"><br>
+</form>
+<p></p>
+<form>
+  创作背景修改：
+  <textarea rows="8" cols="30">请在文本框里输入创作背景</textarea>
+</form>
+<p></p>
+<form>
+  <fieldset>
+  <legend>专辑曲目修改：</legend>
+  <div>
+  曲目序号：<input type="text" name="number"><br>
+  曲目名称：<input type="text" name="trickname"><br>
+  </div>
+  </fieldset>
+</form>
+<p></p>
+<form>
+  专辑乐评修改：
+  <textarea rows="8" cols="30">请在文本框里输入乐评</textarea>
+</form>
+<p></p>
+<form>
+  <fieldset>
+  <legend>获奖记录修改：</legend>
+  <div>
+  时间：
+  <select name="prizetime">
+    <option value="2000">2000</option>
+    <option value="2001">2001</option>
+    <option value="2002">2002</option>
+    <option value="2003">2003</option>
+    <option value="2004">2004</option>
+    <option value="2005">2005</option>
+    <option value="2006">2006</option>
+    <option value="2007">2007</option>
+    <option value="2008">2008</option>
+    <option value="2009">2009</option>
+    <option value="2010">2010</option>
+    <option value="2011">2011</option>
+    <option value="2012">2012</option>
+    <option value="2013">2013</option>
+    <option value="2014">2014</option>
+    <option value="2015">2015</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+    <option value="2019">2019</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+  </select>
+  年 
+  <select name="month">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+  </select>
+  月 
+  </div>
+  颁奖机构：<input type="text" name="institution"><br>
+  授予奖项：<input type="text" name="prizename"><br>
+  获奖作品：<input type="text" name="peizework"><br>
+  <div>
+  结果：
+  <input type="radio" name="operation" value="result">提名
+  <input type="radio" name="operation" value="result">获奖
+  </div>
+</fieldset>
+</form>
+
+</body>
+</html>
