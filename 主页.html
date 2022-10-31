@@ -13,7 +13,13 @@
         grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px;
     }
     .item {  border: 1px solid #e5e4e9;}
+    legend{
+        font-family:"Lucida Console", Monaco, monospace;
+        font-size:40px;
+    }
   </style>
+  <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/carrousel.css"/>
 </head>
 
 <meta charset="utf-8">
@@ -98,13 +104,50 @@ And I forget about you long enough to forget why I needed to.
                                   ——Taylor Swift 《all too well》
 		</pre>
 	</section>
+
+
+  <div class="banner">
+    <section id="dg-container" class="dg-container">
+        <div class="dg-wrapper">
+            <a href="#">
+                <img src="images/mn1.jpg">
+            </a>
+            <a href="#">
+                <img src="images/mn2.jpg">
+            </a>
+            <a href="#">
+                <img src="images/mn3.jpg">
+            </a>
+            <a href="#">
+                <img src="images/mn4.jpg">
+            </a>
+            <a href="#">
+                <img src="images/mn5.jpg">
+            </a>
+        </div>
+        <ol class="button" id="lightButton">
+            <li index="0">
+            <li index="1">
+            <li index="2">
+            <li index="3">
+            <li index="4">
+        </ol>
+        <nav>
+            <span class="dg-prev"></span>
+            <span class="dg-next"></span>
+        </nav>
+    </section>
+</div>
+
+
   <div align="center">
   <form action="demo-form.php" method="get">
     <fieldset>
     <legend>每日一题</legend>
+    <p></p>
     Name: <input type="text" size="30"><br>
     ID: <input type="text" size="30"><br>
-    <p>为什么泰勒斯会写出“spelling is fun”这种歌词</p>
+    <p>为什么泰勒斯会写出“spelling is fun!”这种歌词</p>
     <input type="radio" name="answer" value="1">即将转型儿歌天后<br>
     <input type="radio" name="answer" value="2" checked="checked">暗示Lover发行日期是8.23<br>
     <input type="radio" name="answer" value="3">蜜皇登基<br>
@@ -113,7 +156,7 @@ And I forget about you long enough to forget why I needed to.
     </fieldset>
   </form>
   </div>
-
+<p> </p>
   <section id="code" align="center">
     <meta charset="utf-8">
 		<h2>猜歌名游戏</h2>
@@ -343,5 +386,41 @@ And I forget about you long enough to forget why I needed to.
     <a href="list.html"><img src ="images/bottom.png" width="100%"></a>
   </p>
   
+  <script src="js/jquery.min.js"></script>
+	<script src="js/carrousel.js"></script>
+  <script >
+    $(function () {
+        $('#dg-container').carrousel({
+            current: 0,
+            autoplay: true,
+            interval: 2000
+        });
+    });
+</script>
+
+<script>
+  $(function () {
+      setInterval(function () {
+          const maxW = document.body.clientWidth,
+                maxH = document.body.clientHeight,
+                left = Math.random() * maxW,
+                bottom = left - (Math.random() - 0.5) * 0.2 * maxW, //保证落下的位置水平有变化，但不大
+                opacity = 0.5 + 0.5 * Math.random();
+          const speed = 1;
+          const size = 20 + 20 * Math.random(), //字体20-40
+                color = '#fff';
+          const num = '❄';
+          const style = 'position:absolute;top:0px;font-size:' + size + 'px;color:' + color + ';left:' + left + 'px;opacity:' + opacity;
+          const div = '<span class = "dd" style="' + style + '">' + num + '</span>';
+          $('body').append(div)
+          $('span').animate({
+              top: maxH,
+              left: bottom
+          }, 3000, function () {
+              $(this).remove() //这一步很关键，要把落下的去掉，不然会越积越多
+          });
+      }, 200) //200ms产生一个
+  })
+</script>
 
   </html>
