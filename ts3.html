@@ -165,6 +165,52 @@
     <img src="images/ts3logo.png" width="25%">
 </p>
 
+<body>
+    <fieldset>
+    <legend>评论区</legend>
+    <div class="comtext">
+        Name: <input id="idname" type="text" size="30"><br>
+        <p></p>
+        <textarea name="" id="commBox" cols="70" rows="12" placeholder="请输入评论..."></textarea>
+        <input type="submit" value="提  交" class="combtn" />
+    </div>
+        
+    <div>
+        <ul>
+        </ul>
+    </div>
+    </fieldset>
+</body>
+
 <a href="list.html"><img class="bot" src="./images/d.jpg" width="50px"></a>
+
+<script>
+    window.onload = function() {
+        var idname = document.querySelector("#idname");
+        var commBox = document.querySelector("#commBox");
+        var ul = document.querySelector("ul");
+        var comtext = document.querySelector(".comtext");
+        var combtn = document.querySelector(".combtn");
+
+        combtn.addEventListener('click', function() {
+            if (!commBox.value) {
+                console.log("评论为空");
+            } else {
+                var li = document.createElement("li");
+                li.innerHTML = idname.value + "<p>" + commBox.value + "</p>" + "<a href=''>删除</a>" + "<p>" + "</p>";
+                ul.insertBefore(li, ul.children[0]);
+                commBox.value = '';
+                //删除评论
+                var del = document.querySelectorAll("a");
+                for (var i = 0; i < del.length; i++) {
+                    del[i].onclick = function() {
+                        ul.removeChild(this.parentNode);
+                        return false;
+                    }
+                }
+            }
+        })
+    }
+</script>
 
 </html>
