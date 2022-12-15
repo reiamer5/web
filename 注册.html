@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>注册账户</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>注册账户</h1>
+        <span>请输入注册账号：</span>
+        <input id="r_u" type="text" name="register_username" value="reiam"/>
+        <p></p>
+        <span>请输入注册密码：</span>
+        <input id="r_p" type="password" name="register_password" value="123456"/>
+        <p></p>
+        <button onclick="register_test()">注册新用户</button>
+        <br/><br/><br/>
+        <a href="登录.html">
+            <div>点击返回</div>
+        </a>
+        <p id="demo"></p>
+    </body>
+    <script>
+        function register_test(){
+            let R_username = document.getElementById("r_u").value;
+            let R_password = document.getElementById("r_p").value;
+            localStorage.setItem(R_username,R_password);
+            if(R_username == ""){
+                document.getElementById("demo").textContent = "注册失败，用户名不能为空";
+            }else if(R_password == ""){
+                document.getElementById("demo").textContent = "注册失败，密码不能为空";
+            }else{
+                document.getElementById("demo").textContent = "注册成功";
+            }
+        }//账户密码存储到浏览器
+ 
+    </script>
+</html>

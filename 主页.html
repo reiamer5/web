@@ -6,7 +6,7 @@
   <meta charset="utf-8"> 
   <title>主页</title> 
   <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="normalize-zhuye.css"/>
+  <link rel="stylesheet" href="css/normalize-zhuye.css"/>
 </head>
 
 <meta charset="utf-8">
@@ -341,18 +341,41 @@ And I forget about you long enough to forget why I needed to.
     <div class="item">U</div>
 
   </div>
-  <!--form method="get">
-  <fieldset>
-    <legend>请输入你的答案</legend>
-    <div>
-        我不会告诉你答案是 red 、 all too well 和 lover
-        <p></p>
-        Answer: <input name="idname2" type="text" size="30"><br>
-        <p></p>
-        <p><input type="button" value="提  交" onclick="song()"></p>
+  <div align="center">
+    <form method="get">
+      <fieldset>
+      <legend>猜歌名</legend>
+      <p>请选择你的答案</p>
+      <p></p>
+      <input type="checkbox" name="songname" value="1" checked="checked">red<br>
+      <input type="checkbox" name="songname" value="2">style<br>
+      <input type="checkbox" name="songname" value="3">blank space<br>
+      <input type="checkbox" name="songname" value="4" checked="checked">lover<br>
+      <input type="checkbox" name="songname" value="5">exile<br>
+      <input type="checkbox" name="songname" value="6" checked="checked">all too well<br>
+      <p></p>
+      <p><input type="button" value="提  交" onclick="song()"></p>
+      </fieldset>
+    </form>
     </div>
-    </fieldset>
-  </form-->
+
+    <p></p>
+    <body align=center>
+      <video src="piano.mp4" id="video" controls autoplay width="80%"></video>
+      <br>
+      <input type="button" value="播放" id="playBtn">
+      <input type="button" value="静音" id="pauseBtn">
+      <select name="" id="sheet">
+          <option value="">播放速度</option>
+          <option value="0.5">0.5</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+  
+      </select>
+      <span id="text"></span>
+    </body>
+
 
   <p align=center>
     <a href="list.html"><img src ="images/bottom.png" width="100%"></a>
@@ -422,31 +445,120 @@ And I forget about you long enough to forget why I needed to.
   }
   
 </script>
-<script>
-  window.alert("欢迎您的到来！！\nThis website is all about Taylor Swift\n首页内容主要是关于TS的基本信息\n点击最后的图片即可进入专辑列表页，查看TS的每张专辑\n'I was enchanted to meet you.'");
-</script>
 
-<!--script>
-  var idname2 = document.querySelector("#idname2");
-  function song() {
-    if (idname2.value == "red")  {
-      alert(idname2.value + "回答正确！！ “Losing him was blue like, I'd never known. Missing him was dark gray, all alone”");
-      return false;
+<script>
+  var input_s = document.getElementsByName("songname");
+  var num = 0;
+  function song(){
+    num = 0;
+    for(i=0;i<input_s.length;i++)
+    {
+      obj = input_s[i];
+      type = obj.getAttribute("type");
+      if(type=="checkbox" && obj.checked && obj.getAttribute("value")=="1")
+      {
+        num++;
+        break;
+      }
     }
-    else if (idname2.value == "all too well") {
-      alert(idname2.value + "回答正确！！ “We danced around the kitchen in the refrigerator light.”");
-      return false;
+    for(i=0;i<input_s.length;i++)
+    {
+      obj = input_s[i];
+      type = obj.getAttribute("type");
+      if(type=="checkbox" && obj.checked && obj.getAttribute("value")=="4")
+      {
+        num++;
+        break;
+      }
     }
-    else if (idname2.value == "lover") {
-      alert(idname2.value + "回答正确！！ “Swear to be overdramatic and true to my lover.”");
+    for(i=0;i<input_s.length;i++)
+    {
+      obj = input_s[i];
+      type = obj.getAttribute("type");
+      if(type=="checkbox" && obj.checked && obj.getAttribute("value")=="6")
+      {
+        num++;
+        break;
+      }
+    }
+    for(i=0;i<input_s.length;i++)
+    {
+      obj = input_s[i];
+      type = obj.getAttribute("type");
+      if(type=="checkbox" && obj.checked && obj.getAttribute("value")!="1" && obj.getAttribute("value")!="4" && obj.getAttribute("value")!="6" && num>=3)
+      {
+        num++;
+        break;
+      }
+    }
+    if(num==3){
+      alert("恭喜你答对了!!");
       return false;
     }
     else{
-      alert(idname2.value + "好像不是正确答案");
+      alert("啊哦，再猜猜看吧");
       return false;
+    }
   }
+  
+</script>
+
+<script>
+  window.alert("欢迎您的到来！！\nThis website is all about Taylor Swift\n首页内容主要是关于TS的基本信息\n点击最后的图片即可进入专辑列表页，查看TS的每张专辑\n'I was enchanted to meet you.'\n\nPS:本网站所有页面排版均基于normalize.css的基本样式扩展");
+</script>
+
+<script>
+  let video = document.getElementById("video");
+  let playBtn = document.getElementById("playBtn");
+  let sheetmain = document.getElementById("sheet");
+  let sheet = document.querySelectorAll("#sheet>option");
+  let time = document.getElementById("text");
+  let pauseBtn = document.getElementById("pauseBtn");
+
+  //暂停与播放
+  let state = false;
+  playBtn.onclick = function () {
+      if (!state) {
+          playBtn.value = "暂停";
+          video.play();
+          console.log(video.playbackRate);
+      } else {
+          playBtn.value = "播放";
+          video.pause();
+      }
+      state = !state;
+  }
+  //播放的时间
+  //如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全
+  video.ontimeupdate = function () {
+      console.log(video.currentTime);
+      let hour = parseInt(video.currentTime / 3600).toString().padStart(2, "0");
+      let minute = parseInt(video.currentTime % 3600 / 60).toString().padStart(2, "0");
+      let Seconds = parseInt(video.currentTime % 3600 % 60).toString().padStart(2, "0");
+      console.log(`${hour}：${minute}：${Seconds}`);
+      time.innerHTML = `${hour}：${minute}：${Seconds}`;
   }
 
-</script-->
+  //静音
+  pauseBtn.onclick = function () {
+      if (!state) {
+          video.muted = false;
+      } else {
+          video.muted = true;
+      }
+      state = !state;
+  }
 
-  </html>
+  //播放速度
+  sheetmain.onchange = function () {
+      //     console.log(1);
+      for (let i = 0; i < sheet.length; i++) {
+          if (sheet[i].selected) {
+              video.playbackRate = sheet[i].value;
+              console.log(sheet[i], video.playbackRate);
+          }
+      }
+  }
+</script>
+
+</html>

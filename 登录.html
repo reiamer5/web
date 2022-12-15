@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>登录界面</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>登陆界面</h1>
+        <span>请输入登录账号：</span>
+        <input id="l_u" type="text" name="login_username" value="reiam" required="required"/>
+        <p></p>
+        <span>请输入登录密码：</span>
+        <input id="l_p" type="password" name="login_password" value="123456" required="required"/>
+        <p></p>
+        <button onclick="login_test()">登录</button>
+        <br/><br/><br/>
+        如果没有帐户请点击注册
+        <a href="注册.html">
+            <div>注册</div>
+        </a>
+        <p id="demo"></p>
+    </body>
+    <script>
+        function login_test(){
+            let L_username = document.getElementById("l_u").value;
+            let L_password = document.getElementById("l_p").value;
+            if(localStorage.getItem(L_username) == L_password){
+                document.getElementById("demo").textContent = '用户"' + L_username + '"已登录' + ' 该界面将在三秒后跳转 请等待';
+                setTimeout(go, 3000); 
+            }else{
+                document.getElementById("demo").textContent = "登录失败";
+            }
+        }//验证登录
+
+        function go(){
+            location.href="表单页.html"; 
+        }
+ 
+    </script>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"> 
-    <link rel="stylesheet" href="normalize-list.css"/>
+    <link rel="stylesheet" href="css/normalize-list.css"/>
 </head>
 
 <div id="top" >
@@ -41,23 +41,23 @@
 			<li><a href="#">TS4</a>
                 <ul>
                     <li><a href="ts4.html">原版</a></li>
-                    <li><a href="REDTV.html">重录版</a></li>
+                    <li><a href="ts4t.html">重录版</a></li>
                 </ul></li>
             <li><a href="ts5.html">TS5</a></li>
 			<li><a href="ts6.html">TS6</a></li>
             <li><a href="ts7.html">TS7</a></li>
 			<li><a href="ts8.html">TS8</a></li>
             <li><a href="ts9.html">TS9</a></li>
-			<li><a href="表单页.html">表单页</a></li>
+			<li><a href="登录.html">表单页</a></li>
 	   </ul>
 	</div>
 </body>
 
-<div id="mid_row1_col1" class="bluebox" style="height:3000px;width:10%">
+<div id="mid_row1_col1" class="bluebox" style="height:3200px;width:10%">
 
 </div>
 
-<div id="mid_row1_col3" class="bluebox" style="height:3000px;width:10%">
+<div id="mid_row1_col3" class="bluebox" style="height:3200px;width:10%">
 
 </div>
 
@@ -134,14 +134,96 @@
     </tr>
 
     <th align="center">
-        <a href="REDTV.html"><img src="images/ts11.jpg" width="70%"></a>
+        <a href="ts4t.html"><img src="images/ts11.jpg" width="70%"></a>
     </th>
     <tr align="center">
         <th class="sansserif">《RED（Taylor's version）》</th>
     </tr>
 </table>
 
+<body>
+    <table align="left">
+        <thead>
+            <tr>
+                <th>专辑名</th>
+                <th>访问人数</th>
+                <th>活跃程度</th>
+            </tr>
+        </thead>
+        <tbody id="tdd"></tbody>
+    </table>
+    <script src="js/template-web.js"></script>
+
+    <script type="text/html" id="tpl">
+        {{each list value}}
+        <tr>
+            <td>{{value.name}}</td>
+
+            <td>{{value.num}}</td>
+
+            {{if value.num > 1000}}
+            <td>火爆</td>
+            {{else}}
+            <td>一般</td>
+            {{/if}}
+        </tr>
+        {{/each}}
+    </script>
+    <script>
+        var arr = [{
+                name: "《Taylor Swift》",
+                num: 650
+            },
+            {
+                name: "《Fearless》",
+                num: 1280
+            },
+            {
+                name: "《Speak Now》",
+                num: 880
+            },
+            {
+                name: "《RED》",
+                num: 1690
+            },
+            {
+                name: "《1989》",
+                num: 1870
+            },
+            {
+                name: "《reputation》",
+                num: 1130
+            },
+            {
+                name: "《Lover》",
+                num: 1250
+            },
+            {
+                name: "《folklore》",
+                num: 1360
+            },
+            {
+                name: "《evermore》",
+                num: 780
+            },
+            {
+                name: "《Fearless TV》",
+                num: 750
+            },
+            {
+                name: "《RED TV》",
+                num: 1100
+            },
+        ];
+        var html = template("tpl", {
+            list: arr
+        });
+        var tbo=document.getElementById("tdd");
+        tbo.innerHTML+=html;
+    </script>
+</body>
+
 <p></p>
-<h2 align="center"><a href="主页.html">回到主页</a></h2>
+<h2 align="right"><a href="主页.html">回到主页</a></h2>
 
 </html>

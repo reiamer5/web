@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head> 
-<meta charset="utf-8"> 
+  <meta charset="utf-8"> 
+  <link rel="stylesheet" href="css/normalize-ts.css"/>
 <title>表单页</title> 
-<style>
-  fieldset { width:300px; }
-  input:focus
-  {
-    background-color:rgb(245, 245, 171);
-  }
-</style>
+  <style>
+    fieldset { width:300px; }
+    input:focus
+    {
+      background-color:rgb(245, 245, 171);
+    }
+  </style>
 </head>
-<body>
-
-<form name="input" action="html_form_action.php" method="get">
-  管理员账户: <input type="text" name="user"><br>
-  管理员密码: <input type="password" name="password"><br>
-  <input type="button" value="Login">
-</form>
-<p></p>
-
-<form>
-  <input type="radio" name="operation" value="modify">修改内容<br>
-  <input type="radio" name="operation" value="insert">插入新内容<br>
-  <input type="button" value="确认">
-</form>
 <p></p>
 
 <form>
   专辑名称：
-  <select name="albumname">
+  <select id="albumname">
     <option value="1">《Taylor Swift》</option>
     <option value="2">《Fearless》</option>
     <option value="3">《Speak Now》</option>
@@ -44,7 +31,7 @@
   </select>
   <br>
   发行时间：
-  <select name="year">
+  <select id="year">
     <option value="2000">2000</option>
     <option value="2001">2001</option>
     <option value="2002">2002</option>
@@ -70,7 +57,7 @@
     <option value="2022">2022</option>
   </select>
   年 
-  <select name="month">
+  <select id="month">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -91,22 +78,22 @@
 <p></p>
 <form>
   创作背景修改：
-  <textarea rows="8" cols="30">请在文本框里输入创作背景</textarea>
+  <textarea rows="8" cols="30" id="beijing">请在文本框里输入创作背景</textarea>
 </form>
 <p></p>
 <form>
   <fieldset>
   <legend>专辑曲目修改：</legend>
   <div>
-  曲目序号：<input type="text" name="number"><br>
-  曲目名称：<input type="text" name="trickname"><br>
+  曲目序号：<input type="text" name="number" id="xuhao" value="13" placeholder="请输入0-20的数字"><br>
+  曲目名称：<input type="text" name="trickname" id="qumuming" value="《更改后曲目》"><br>
   </div>
   </fieldset>
 </form>
 <p></p>
 <form>
   专辑乐评修改：
-  <textarea rows="8" cols="30">请在文本框里输入乐评</textarea>
+  <textarea rows="8" cols="30" id="yueping">请在文本框里输入乐评</textarea>
 </form>
 <p></p>
 <form>
@@ -114,7 +101,7 @@
   <legend>获奖记录修改：</legend>
   <div>
   时间：
-  <select name="prizetime">
+  <select name="huojiangyear" id="huojiangyear">
     <option value="2000">2000</option>
     <option value="2001">2001</option>
     <option value="2002">2002</option>
@@ -140,7 +127,7 @@
     <option value="2022">2022</option>
   </select>
   年 
-  <select name="month">
+  <select name="huojiangmonth" id="huojiangmonth">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -156,16 +143,214 @@
   </select>
   月 
   </div>
-  颁奖机构：<input type="text" name="institution"><br>
-  授予奖项：<input type="text" name="prizename"><br>
-  获奖作品：<input type="text" name="peizework"><br>
+  颁奖机构：<input type="text" name="institution" id="jigou" value="格兰美"><br>
+  授予奖项：<input type="text" name="prizename" id="jiangxiang" value="年度专辑"><br>
+  获奖作品：<input type="text" name="peizework" id="zuoping" value="《歌曲名》"><br>
   <div>
   结果：
-  <input type="radio" name="operation" value="result">提名
-  <input type="radio" name="operation" value="result">获奖
+  <input type="radio" name="operation" value="1" checked="checked">提名
+  <input type="radio" name="operation" value="2">获奖
   </div>
 </fieldset>
+
 </form>
 
+<p><input type="submit" value="确 认 添 加" class="combtn" /></p>
+
+<body>
+  <ul>
+  </ul>
 </body>
+
+<script>
+  window.onload = function() {
+    var ul = document.querySelector("ul");
+    var combtn = document.querySelector(".combtn");
+
+    // 创建新的段落元素
+    var albumname = document.getElementById("albumname");
+    var year = document.getElementById("year");
+    var month = document.getElementById("month");
+    var beijing = document.getElementById("beijing");
+    var xuhao = document.getElementById("xuhao");
+    var qumuming = document.getElementById("qumuming");
+    var yueping = document.getElementById("yueping");
+    var huojiangyear = document.getElementById("huojiangyear");
+    var huojiangmonth = document.getElementById("huojiangmonth");
+    var jigou = document.getElementById("jigou");
+    var jiangxiang = document.getElementById("jiangxiang");
+    var zuoping = document.getElementById("zuoping");
+    var jieguo = document.getElementsByName("operation");
+
+
+    combtn.addEventListener('click', function() {
+      var li = document.createElement("li");
+      if(albumname.value==1){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《Taylor Swift》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《Taylor Swift》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==2){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《Fearless》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《Fearless》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==3){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《Speak Now》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《Speak Now》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==4){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《RED》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《RED》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==5){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《1989》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《1989》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==6){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《reputation》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《reputation》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==7){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《Lover》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《Lover》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==8){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《folklore》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《folklore》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==9){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《evermore》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《evermore》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==10){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《Fearless（Taylor's version）》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《Fearless（Taylor's version）》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+      else if(albumname.value==11){
+        if(jieguo[0].checked){
+          li.innerHTML = "专辑名：《RED（Taylor's version）》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：提名<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+        else{
+          li.innerHTML = "专辑名：《RED（Taylor's version）》 发行时间：" + year.value + "年" + month.value + "月" + "<p></p>创作背景：" +
+          beijing.value + "<p></p>专辑曲目修改：曲目序号" + xuhao.value + "  修改为" + qumuming.value  + "<p></p>乐评修改：" + yueping.value +
+          "<p></p>获奖记录修改：获奖时间" + huojiangyear.value + "月" + huojiangmonth.value + "日" + "<p></p>颁奖机构：" +
+          jigou.value + "<p></p>授予奖项：" + jiangxiang.value + "<p></p>获奖作品：" + zuoping.value + "<p></p>结果：获奖<p></p>" + "<a href=''>删除</a>" + "<p></p>";
+        }
+      }
+
+      ul.insertBefore(li, ul.children[0]);
+      //删除内容
+      var del = document.querySelectorAll("a");
+      for (var i = 0; i < del.length; i++) {
+          del[i].onclick = function() {
+              ul.removeChild(this.parentNode);
+              return false;
+          }
+      }
+    })
+  }
+</script>
+
 </html>

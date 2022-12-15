@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8"> 
-    <link rel="stylesheet" href="normalize-ts.css"/>
+    <link rel="stylesheet" href="css/normalize-ts.css"/>
     <style>
     img.bot{
         position: fixed;bottom:10px;right:10px;
@@ -158,9 +158,9 @@
     <fieldset>
     <legend>评论区</legend>
     <div class="comtext">
-        Name: <input id="idname" type="text" size="30"><br>
+        Name: <input id="idname" type="text" size="30" value="亲爱的游客"><br>
         <p></p>
-        <textarea name="" id="commBox" cols="70" rows="12" placeholder="请输入评论..."></textarea>
+        <textarea name="" id="commBox" cols="70" rows="12" placeholder="请输入评论...">请输入评论...</textarea>
         <input type="submit" value="提  交" class="combtn" />
     </div>
         
@@ -172,6 +172,8 @@
 </body>
 
 <a href="list.html"><img class="bot" src="./images/d.jpg" width="50px"></a>
+<script src="js/routes.js"></script>
+<script src="js/HistoryRouter.js"></script>
 
 <script>
     window.onload = function() {
