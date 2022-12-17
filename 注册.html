@@ -20,8 +20,8 @@
     </body>
     <script>
         function register_test(){
-            let R_username = document.getElementById("r_u").value;
-            let R_password = document.getElementById("r_p").value;
+            var R_username = document.getElementById("r_u").value;
+            var R_password = document.getElementById("r_p").value;
             localStorage.setItem(R_username,R_password);
             if(R_username == ""){
                 document.getElementById("demo").textContent = "注册失败，用户名不能为空";
@@ -30,6 +30,11 @@
             }else{
                 document.getElementById("demo").textContent = "注册成功";
             }
+            //使用AJAX将内容发送到服务器
+            var xhr = new XMLHttpRequest();
+            xhr. open('POST','http://example.com/data',true) ;
+            xhr. send(R_username);
+            xhr. send(R_password);
         }//账户密码存储到浏览器
  
     </script>

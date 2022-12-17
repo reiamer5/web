@@ -21,8 +21,8 @@
     </body>
     <script>
         function login_test(){
-            let L_username = document.getElementById("l_u").value;
-            let L_password = document.getElementById("l_p").value;
+            var L_username = document.getElementById("l_u").value;
+            var L_password = document.getElementById("l_p").value;
             if(localStorage.getItem(L_username) == L_password){
                 document.getElementById("demo").textContent = '用户"' + L_username + '"已登录' + ' 该界面将在三秒后跳转 请等待';
                 setTimeout(go, 3000); 

@@ -142,7 +142,7 @@
         Name: <input id="idname" type="text" size="30" value="亲爱的游客"><br>
         <p></p>
         <textarea name="" id="commBox" cols="70" rows="12" placeholder="请输入评论...">请输入评论......如果点击提交没有反应可能是网页加载问题卡住了，等前面图片加载完了再点提交就行了，请谅解</textarea>
-        <input type="submit" value="提  交" class="combtn" />
+        <button id="add-button">提  交</button>
     </div>
         
     <div>
@@ -156,33 +156,35 @@
 <script src="js/routes.js"></script>
 <script src="js/HistoryRouter.js"></script>
 
-<script>
-    window.onload = function() {
-        var idname = document.querySelector("#idname");
-        var commBox = document.querySelector("#commBox");
-        var ul = document.querySelector("ul");
-        var comtext = document.querySelector(".comtext");
-        var combtn = document.querySelector(".combtn");
+<a href="./list.html"><img class="bot" src="./images/d.jpg" width="50px"></a>
+<script src="js/routes.js"></script>
+<script src="js/HistoryRouter.js"></script>
 
-        combtn.addEventListener('click', function() {
-            if (!commBox.value) {
-                console.log("评论为空");
-            } else {
-                var li = document.createElement("li");
-                li.innerHTML = idname.value + "<p>" + commBox.value + "</p>" + "<a href=''>删除</a>" + "<p>" + "</p>";
-                ul.insertBefore(li, ul.children[0]);
-                commBox.value = '';
-                //删除评论
-                var del = document.querySelectorAll("a");
-                for (var i = 0; i < del.length; i++) {
-                    del[i].onclick = function() {
-                        ul.removeChild(this.parentNode);
-                        return false;
-                    }
+<script>
+    var addButton = document.getElementById('add-button');
+    var idname = document.querySelector("#idname");
+    var commBox = document.querySelector("#commBox");
+    var ul = document.querySelector("ul");
+    var comtext = document.querySelector(".comtext");
+
+    addButton.addEventListener('click', () => {
+        if (!commBox.value) {
+            console.log("评论为空");
+        } else {
+            var li = document.createElement("li");
+            li.innerHTML = idname.value + "<p>" + commBox.value + "</p>" + "<a href=''>删除</a>" + "<p>" + "</p>";
+            ul.insertBefore(li, ul.children[0]);
+            commBox.value = '';
+            //删除评论
+            var del = document.querySelectorAll("a");
+            for (var i = 0; i < del.length; i++) {
+                del[i].onclick = function() {
+                    ul.removeChild(this.parentNode);
+                    return false;
                 }
             }
-        })
-    }
+        }
+    })
 </script>
 
 <script>
